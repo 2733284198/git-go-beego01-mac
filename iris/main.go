@@ -4,12 +4,15 @@ import "github.com/kataras/iris"
 
 func main() {
 	app := iris.Default()
+	app.Logger().SetLevel("debug")
+	//app.SetRegisterRule(iris.HTML("./",".html") )
 
 	// This handler will match /user/john but will not match /user/ or /user
-	app.Get("/user/{name}", func(ctx iris.Context) {
+
+	/*app.Get("/user/{name}", func(ctx iris.Context) {
 		name := ctx.Params().Get("name")
 		_, _ = ctx.Writef("Hello %s", name)
-	})
+	})*/
 
 	// However, this one will match /user/john/ and also /user/john/send
 	// If no other routers match /user/john, it will redirect to /user/john/
