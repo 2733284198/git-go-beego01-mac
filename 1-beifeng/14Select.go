@@ -9,11 +9,16 @@ func main() {
 
 	ch := make(chan int)
 
+	//
+	go func(ch chan int) {
+		ch <- 1
+	}(ch)
+
 	select {
 	case <-ch:
 		fmt.Println("1-开始读")
-	case ch <- 1:
-		fmt.Println("2-开始写")
+	//case ch <- 1:
+	//	fmt.Println("2-开始写")
 	default:
 		fmt.Println("3-default")
 	}
